@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import sqlite3
 
-@st.cache
 
 df_hosp= pd.read_csv('Patient_survey__HCAHPS__-__Hospital.csv', encoding = "utf-8")
 hosp_surveys = df_hosp.to_dict("records")
@@ -31,6 +30,7 @@ def scoped_survey_questions(hosp_surveys):
     return questions_list
 
 #change scoped_surveys list to a df
+scoped_surveys= scoped_survey_questions(hosp_surveys)
 pd_surveys = pd.DataFrame.from_dict(scoped_surveys)
 
 # get all scoped string coordinates, clean data and add 0,0 for lat, long if equal to string =keep, 
